@@ -8,18 +8,18 @@
 ## Note that all matricies are assumed to be square invertable
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL # the initial inverse matrix does not yet exist
+  i <- NULL # the initial inverse matrix does not yet exist
   
   set <- function(y) { # Here we "set" the value of a matrix
     x <<- y
-    inv <<- NULL
+    i <<- NULL
   }
 
   get <- function() x # Here we return the matrix
   
-  setInverse <- function(inverse) inv <<- inverse # this sets the inverse
+  setInverse <- function(inverse) i <<- inverse # this sets the inverse
   
-  getInverse <- function() inv # this returns the inverse
+  getInverse <- function() i # this returns the inverse
   
   list(set = set, # the magic sauce. we actually have a list of the 4 operations
        get = get,
@@ -34,17 +34,17 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   
-  inv <- x$getInverse() # see what's there
+  i <- x$getInverse() # see what's there
   
-  if (!is.null(inv)) { # we've already done it
+  if (!is.null(i)) { # we've already done it
     message("getting cached data")
-    return(inv)
+    return(i)
   }
   
   # not already cached, so let's compute it
   mat <- x$get() # get the matrix that is to be inverted
-  inv <- solve(mat, ...) # invert it
-  x$setInverse(inv) # cache it now
-  inv # return it back to the user
+  i <- solve(mat, ...) # invert it
+  x$setInverse(i) # cache it now
+  i # return it back to the user
 }
 
