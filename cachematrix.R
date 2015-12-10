@@ -5,7 +5,7 @@
 ##  These elements of the list are used to manipulate a matrix within the environment,
 ## and store the inverse matrix
 ##
-## Note that all matricies are assumed to be square invertable
+## Note that all matricies are assumed to be square and invertable - no error checking done
 
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL # the initial inverse matrix does not yet exist
